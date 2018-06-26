@@ -57,19 +57,19 @@ public class PawnTest {
     }
 
     @Test
-    public void testIllegalLeftDiagonalWhite_ReturnsFalse() {
+    public void testLeftDiagonalWhite_ReturnsFalse() {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 2);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
+        assertTrue(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
-    public void testIllegalRightDiagonalWhite_ReturnsFalse() {
+    public void testRightDiagonalWhite_ReturnsFalse() {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 4);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
+        assertTrue(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -121,19 +121,19 @@ public class PawnTest {
     }
 
     @Test
-    public void testIllegalLeftDiagonalBlack_ReturnsFalse() {
+    public void testLeftDiagonalBlack_ReturnsFalse() {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 2);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
+        assertTrue(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
-    public void testIllegalRightDiagonalBlack_ReturnsFalse() {
+    public void testRightDiagonalBlack_ReturnsFalse() {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 4);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
+        assertTrue(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
