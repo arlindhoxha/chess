@@ -43,40 +43,58 @@ public class Board {
         this.blackPieces = blackPieces;
     }
 
-    public boolean move(Player player, Coordinate from, Coordinate to) {
+    public boolean move(Player wPlayer, Player bPlayer, Coordinate from, Coordinate to, boolean isWhiteMove) {
         Square fromSquare = board[from.getRow()][from.getCol()];
         Square passantSquare = board[from.getRow()][to.getCol()];
         Square toSquare = board[to.getRow()][to.getCol()];
 
-        ValidateMoveResult result = fromSquare.getPiece().validateMove(board, from, to);
-        if (result.isValid()) {
-            Piece piece = null;
+        if (fromSquare.getPiece().getColor() == Color.WHITE && !isWhiteMove) {
+            return false;
+        }
+
+        if (fromSquare.getPiece().getColor() == Color.BLACK && isWhiteMove) {
+            return false;
+        }
+
+        if (fromSquare == null) {
+            return false;
+        }
+
+        boolean valid = fromSquare.getPiece().validateMove(board, from, to);
+        if (valid) {
+            Piece toPiece = null;
+            Piece fromPiece = fromSquare.getPiece();
+
             if (toSquare != null) {
-                if (result.isPassant()) {
-                    piece = passantSquare.getPiece();
-                    board[from.getRow()][to.getCol()] = null;
-                } else {
-                    piece = toSquare.getPiece();
-                }
-                int num = player.getPieces().get(piece);
-                if (num > 1) {
-                    player.getPieces().replace(piece, num-1);
+                toPiece = toSquare.getPiece();
 
-                    if (piece.getColor() == Color.WHITE) {
-                        whitePieces.replace(piece, num-1);
-                    } else {
-                        blackPieces.replace(piece, num-1);
-                    }
-                } else {
-                    player.getPieces().remove(piece);
-
-                    if (piece.getColor() == Color.WHITE) {
-                        whitePieces.remove(piece);
-                    } else {
-                        blackPieces.remove(piece);
-                    }
+                if (toPiece.getColor() == Color.WHITE && fromPiece.getColor() == Color.BLACK) {
+                    int num = wPlayer.getPieces().get(toPiece);
+                    wPlayer.getPieces().replace(toPiece, num - 1);
+                    whitePieces.replace(toPiece, num - 1);
+                } else if (toPiece.getColor() == Color.BLACK && fromPiece.getColor() == Color.WHITE) {
+                    int num = bPlayer.getPieces().get(toPiece);
+                    bPlayer.getPieces().replace(toPiece, num - 1);
+                    blackPieces.replace(toPiece, num - 1);
                 }
             }
+
+            if (passantSquare != null && toSquare == null) {
+                Piece passantPiece = passantSquare.getPiece();
+
+                if (passantPiece.getColor() == Color.WHITE && fromPiece.getColor() == Color.BLACK) {
+                    int num = wPlayer.getPieces().get(passantPiece);
+                    wPlayer.getPieces().replace(passantPiece, num - 1);
+                    whitePieces.replace(passantPiece, num - 1);
+                    board[from.getRow()][to.getCol()] = null;
+                } else if (passantPiece.getColor() == Color.BLACK && fromPiece.getColor() == Color.WHITE) {
+                    int num = bPlayer.getPieces().get(passantPiece);
+                    bPlayer.getPieces().replace(passantPiece, num - 1);
+                    blackPieces.replace(passantPiece, num - 1);
+                    board[from.getRow()][to.getCol()] = null;
+                }
+            }
+
             board[to.getRow()][to.getCol()] = fromSquare;
             board[from.getRow()][from.getCol()] = null;
             return true;

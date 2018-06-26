@@ -29,7 +29,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6,1);
         Coordinate to = new Coordinate(4, 1);
 
-        assertTrue(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertTrue(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6,1);
         Coordinate to = new Coordinate(6, 1);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(5, 2);
         Coordinate to = new Coordinate(4, 2);
 
-        assertTrue(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertTrue(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -53,7 +53,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(5, 2);
         Coordinate to = new Coordinate(3, 3);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -61,7 +61,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 2);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 4);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 1);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6, 3);
         Coordinate to = new Coordinate(5, 5);
 
-        assertFalse(wPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(1,1);
         Coordinate to = new Coordinate(3, 1);
 
-        assertTrue(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertTrue(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -101,7 +101,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(6,1);
         Coordinate to = new Coordinate(6, 1);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -109,7 +109,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(2, 2);
         Coordinate to = new Coordinate(3, 2);
 
-        assertTrue(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertTrue(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -117,7 +117,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(2, 2);
         Coordinate to = new Coordinate(4, 3);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -125,7 +125,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 2);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -133,7 +133,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 4);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -141,7 +141,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 1);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
     @Test
@@ -149,7 +149,7 @@ public class PawnTest {
         Coordinate from = new Coordinate(1, 3);
         Coordinate to = new Coordinate(2, 5);
 
-        assertFalse(bPawn.validateMove(board.getBoard(), from, to).isValid());
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
     }
 
 

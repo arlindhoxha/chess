@@ -2,7 +2,8 @@ package com.ah.piece;
 
 import com.ah.board.Coordinate;
 import com.ah.board.Square;
-import com.ah.board.ValidateMoveResult;
+
+import java.util.Objects;
 
 /**
  * Created by Arlind Hoxha on 6/24/2018.
@@ -10,7 +11,6 @@ import com.ah.board.ValidateMoveResult;
 public abstract class Piece {
     private Type type;
     private Color color;
-    private boolean twoSquares;
 
     public Type getType() {
         return type;
@@ -28,13 +28,20 @@ public abstract class Piece {
         this.color = color;
     }
 
-    public boolean isTwoSquares() {
-        return twoSquares;
+    public abstract boolean validateMove(Square[][] board, Coordinate from, Coordinate to);
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return type == piece.type &&
+                color == piece.color;
     }
 
-    public void setTwoSquares(boolean twoSquares) {
-        this.twoSquares = twoSquares;
-    }
+    @Override
+    public int hashCode() {
 
-    public abstract ValidateMoveResult validateMove(Square[][] board, Coordinate from, Coordinate to);
+        return Objects.hash(type, color);
+    }
 }

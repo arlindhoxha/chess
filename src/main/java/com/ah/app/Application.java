@@ -16,9 +16,9 @@ public class Application {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Player 1's name: ");
-        String wName = sc.next();
+        String wName = sc.nextLine();
         System.out.println("Player 2's name: ");
-        String bName = sc.next();
+        String bName = sc.nextLine();
         Player wPlayer = new Player(Color.WHITE, wName);
         Player bPlayer = new Player(Color.BLACK, bName);
 
@@ -30,10 +30,12 @@ public class Application {
             board.printBoard();
             if (whiteMove) {
                 System.out.println(wPlayer.getName() + "'s TURN!");
-                System.out.println("From: \n");
-                String from = sc.next().toLowerCase();
-                System.out.println("To: \n");
-                String to = sc.next().toLowerCase();
+                System.out.println("Move: \n");
+                String move = sc.nextLine().toLowerCase();
+
+                String[] tokens = move.split(" ");
+                String from = tokens[0];
+                String to = tokens[1];
 
                 int fromRow = board.getBoard().length - Character.getNumericValue(from.charAt(1));
                 int fromCol = from.charAt(0) - 97;
@@ -43,7 +45,7 @@ public class Application {
                 int toCol = to.charAt(0) - 97;
                 Coordinate toCoord = new Coordinate(toRow, toCol);
 
-                boolean validMove = board.move(wPlayer, fromCoord, toCoord);
+                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, whiteMove);
 
                 if (!validMove) {
                     System.out.println("Invalid move! Please make a valid move.");
@@ -52,10 +54,12 @@ public class Application {
                 }
             } else {
                 System.out.println(bPlayer.getName() + "'s TURN!");
-                System.out.println("From: \n");
-                String from = sc.next().toLowerCase();
-                System.out.println("To: \n");
-                String to = sc.next().toLowerCase();
+                System.out.println("Move: \n");
+                String move = sc.nextLine().toLowerCase();
+
+                String[] tokens = move.split(" ");
+                String from = tokens[0];
+                String to = tokens[1];
 
                 int fromRow = board.getBoard().length - Character.getNumericValue(from.charAt(1));
                 int fromCol = from.charAt(0) - 97;
@@ -65,7 +69,7 @@ public class Application {
                 int toCol = to.charAt(0) - 97;
                 Coordinate toCoord = new Coordinate(toRow, toCol);
 
-                boolean validMove = board.move(bPlayer, fromCoord, toCoord);
+                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, whiteMove);
 
                 if (!validMove) {
                     System.out.println("Invalid move! Please make a valid move.");
