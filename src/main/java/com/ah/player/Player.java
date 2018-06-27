@@ -22,7 +22,7 @@ public class Player {
     public Player(Color color, String name) {
         this.name = name;
         this.color = color;
-        initPieces();
+//        initPieces();
     }
 
     public Color getColor() {
