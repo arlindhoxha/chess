@@ -43,7 +43,7 @@ public class Board {
         this.blackPieces = blackPieces;
     }
 
-    public boolean move(Player wPlayer, Player bPlayer, Coordinate from, Coordinate to, boolean isWhiteMove) {
+    public boolean move(Player wPlayer, Player bPlayer, Coordinate from, Coordinate to, String promotion, boolean isWhiteMove) {
         Square fromSquare = board[from.getRow()][from.getCol()];
         Square passantSquare = board[from.getRow()][to.getCol()];
         Square toSquare = board[to.getRow()][to.getCol()];
@@ -65,33 +65,55 @@ public class Board {
             Piece toPiece = null;
             Piece fromPiece = fromSquare.getPiece();
 
-            if (toSquare != null) {
-                toPiece = toSquare.getPiece();
-
-                if (toPiece.getColor() == Color.WHITE && fromPiece.getColor() == Color.BLACK) {
-                    int num = wPlayer.getPieces().get(toPiece);
-                    wPlayer.getPieces().replace(toPiece, num - 1);
-                    whitePieces.replace(toPiece, num - 1);
-                } else if (toPiece.getColor() == Color.BLACK && fromPiece.getColor() == Color.WHITE) {
-                    int num = bPlayer.getPieces().get(toPiece);
-                    bPlayer.getPieces().replace(toPiece, num - 1);
-                    blackPieces.replace(toPiece, num - 1);
-                }
-            }
-
             if (passantSquare != null && toSquare == null) {
                 Piece passantPiece = passantSquare.getPiece();
 
                 if (passantPiece.getColor() == Color.WHITE && fromPiece.getColor() == Color.BLACK) {
-                    int num = wPlayer.getPieces().get(passantPiece);
-                    wPlayer.getPieces().replace(passantPiece, num - 1);
-                    whitePieces.replace(passantPiece, num - 1);
                     board[from.getRow()][to.getCol()] = null;
                 } else if (passantPiece.getColor() == Color.BLACK && fromPiece.getColor() == Color.WHITE) {
-                    int num = bPlayer.getPieces().get(passantPiece);
-                    bPlayer.getPieces().replace(passantPiece, num - 1);
-                    blackPieces.replace(passantPiece, num - 1);
                     board[from.getRow()][to.getCol()] = null;
+                }
+            }
+
+            if (fromPiece.getType() == Type.PAWN  && promotion != null) {
+                //promotion
+                if (fromPiece.getColor() == Color.WHITE && to.getRow() == 0) {
+                    switch (promotion) {
+                        case "q":
+                            fromSquare.setPiece(new Queen(Color.WHITE));
+                            break;
+                        case "n":
+                            fromSquare.setPiece(new Knight(Color.WHITE));
+                            break;
+                        case "r":
+                            fromSquare.setPiece(new Rook(Color.WHITE));
+                            break;
+                        case "b":
+                            fromSquare.setPiece(new Bishop(Color.WHITE));
+                            break;
+                        default:
+                            return false;
+                    }
+                }
+
+                if (fromPiece.getColor() == Color.BLACK && to.getRow() == 7) {
+                    //promotion
+                    switch (promotion) {
+                        case "q":
+                            fromSquare.setPiece(new Queen(Color.BLACK));
+                            break;
+                        case "n":
+                            fromSquare.setPiece(new Knight(Color.BLACK));
+                            break;
+                        case "r":
+                            fromSquare.setPiece(new Rook(Color.BLACK));
+                            break;
+                        case "b":
+                            fromSquare.setPiece(new Bishop(Color.BLACK));
+                            break;
+                        default:
+                            return false;
+                    }
                 }
             }
 
@@ -164,8 +186,8 @@ public class Board {
     }
 
     private void init() {
-        whitePieces = initPieces(whitePieces, Color.WHITE);
-        blackPieces = initPieces(blackPieces, Color.BLACK);
+//        whitePieces = initPieces(whitePieces, Color.WHITE);
+//        blackPieces = initPieces(blackPieces, Color.BLACK);
         board = new Square[8][8];
 
         setBlackPieces();

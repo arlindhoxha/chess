@@ -36,6 +36,10 @@ public class Application {
                 String[] tokens = move.split(" ");
                 String from = tokens[0];
                 String to = tokens[1];
+                String promotion = null;
+                if (tokens.length == 3) {
+                    promotion = tokens[2];
+                }
 
                 int fromRow = board.getBoard().length - Character.getNumericValue(from.charAt(1));
                 int fromCol = from.charAt(0) - 97;
@@ -45,7 +49,7 @@ public class Application {
                 int toCol = to.charAt(0) - 97;
                 Coordinate toCoord = new Coordinate(toRow, toCol);
 
-                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, whiteMove);
+                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, promotion, whiteMove);
 
                 if (!validMove) {
                     System.out.println("Invalid move! Please make a valid move.");
@@ -60,6 +64,10 @@ public class Application {
                 String[] tokens = move.split(" ");
                 String from = tokens[0];
                 String to = tokens[1];
+                String promotion = null;
+                if (tokens.length == 3) {
+                    promotion = tokens[2];
+                }
 
                 int fromRow = board.getBoard().length - Character.getNumericValue(from.charAt(1));
                 int fromCol = from.charAt(0) - 97;
@@ -69,7 +77,7 @@ public class Application {
                 int toCol = to.charAt(0) - 97;
                 Coordinate toCoord = new Coordinate(toRow, toCol);
 
-                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, whiteMove);
+                boolean validMove = board.move(wPlayer, bPlayer, fromCoord, toCoord, promotion, whiteMove);
 
                 if (!validMove) {
                     System.out.println("Invalid move! Please make a valid move.");
