@@ -117,6 +117,16 @@ public class Board {
                 }
             }
 
+            if (toSquare != null) {
+                toPiece = toSquare.getPiece();
+            }
+
+            if (toPiece != null) {
+                if (toPiece.getColor() == fromPiece.getColor()) {
+                    return false;
+                }
+            }
+
             board[to.getRow()][to.getCol()] = fromSquare;
             board[from.getRow()][from.getCol()] = null;
             return true;

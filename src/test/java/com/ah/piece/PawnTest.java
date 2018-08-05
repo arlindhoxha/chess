@@ -2,6 +2,7 @@ package com.ah.piece;
 
 import com.ah.board.Board;
 import com.ah.board.Coordinate;
+import com.ah.board.Square;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +14,6 @@ import static org.junit.Assert.*;
 public class PawnTest {
 
     private Board board;
-
     private Pawn bPawn;
     private Pawn wPawn;
 
@@ -30,6 +30,30 @@ public class PawnTest {
         Coordinate to = new Coordinate(4, 1);
 
         assertTrue(wPawn.validateMove(board.getBoard(), from, to));
+    }
+
+    @Test
+    public void testFirstWhiteMove_OccupiedSpace_ReturnsFalse() {
+        Coordinate from = new Coordinate(6,1);
+        Coordinate to = new Coordinate(4, 1);
+
+        board.getBoard()[to.getRow()][to.getCol()] = new Square(new Pawn(Color.WHITE));
+
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
+
+        board.getBoard()[to.getRow()][to.getCol()] = null;
+    }
+
+    @Test
+    public void testNonFirstWhiteMove_OccupiedSpace_ReturnsFalse() {
+        Coordinate from = new Coordinate(6,1);
+        Coordinate to = new Coordinate(5, 1);
+
+        board.getBoard()[to.getRow()][to.getCol()] = new Square(new Pawn(Color.WHITE));
+
+        assertFalse(wPawn.validateMove(board.getBoard(), from, to));
+
+        board.getBoard()[to.getRow()][to.getCol()] = null;
     }
 
     @Test
@@ -94,6 +118,30 @@ public class PawnTest {
         Coordinate to = new Coordinate(3, 1);
 
         assertTrue(bPawn.validateMove(board.getBoard(), from, to));
+    }
+
+    @Test
+    public void testFirstBlackMove_OccupiedSpace_ReturnsFalse() {
+        Coordinate from = new Coordinate(1,1);
+        Coordinate to = new Coordinate(3, 1);
+
+        board.getBoard()[to.getRow()][to.getCol()] = new Square(new Pawn(Color.BLACK));
+
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
+
+        board.getBoard()[to.getRow()][to.getCol()] = null;
+    }
+
+    @Test
+    public void testNonFirstBlackMove_OccupiedSpace_ReturnsFalse() {
+        Coordinate from = new Coordinate(1,1);
+        Coordinate to = new Coordinate(2, 1);
+
+        board.getBoard()[to.getRow()][to.getCol()] = new Square(new Pawn(Color.BLACK));
+
+        assertFalse(bPawn.validateMove(board.getBoard(), from, to));
+
+        board.getBoard()[to.getRow()][to.getCol()] = null;
     }
 
     @Test

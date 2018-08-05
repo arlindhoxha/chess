@@ -15,6 +15,14 @@ public class Rook extends Piece {
 
     @Override
     public boolean validateMove(Square[][] board, Coordinate from, Coordinate to) {
+        if (from.getRow() == to.getRow() && from.getCol() != to.getCol()) {
+            return true;
+        }
+
+        if (from.getCol() == to.getCol() && from.getRow() != to.getRow()) {
+            return true;
+        }
+
         return false;
     }
 }
