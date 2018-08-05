@@ -36,13 +36,11 @@ public class Pawn extends Piece {
     }
 
     private boolean checkWhite(Square[][] board, Coordinate from, Coordinate to) {
-        if (from.getRow() == 6 && from.getCol() == to.getCol()) {
-            if (from.getRow() - to.getRow() < 3) {
-                int c = from.getCol();
-                for (int r = from.getRow() - 1; r > to.getRow(); r--) {
-                    if (board[r][c] != null) {
-                        return false;
-                    }
+        if (from.getRow() == 6 && from.getCol() == to.getCol() && (from.getRow() - to.getRow() == 2)) {
+            int c = from.getCol();
+            for (int r = from.getRow() - 1; r >= to.getRow(); r--) {
+                if (board[r][c] != null) {
+                    return false;
                 }
             }
         } else if (from.getCol() == to.getCol()) {
@@ -59,13 +57,11 @@ public class Pawn extends Piece {
     }
 
     private boolean checkBlack(Square[][] board, Coordinate from, Coordinate to) {
-        if (from.getRow() == 1 && from.getCol() == to.getCol()) {
-            if (to.getRow() - from.getRow() < 3) {
-                int c = from.getCol();
-                for (int r = to.getRow(); r > from.getRow(); r--) {
-                    if (board[r][c] != null) {
-                        return false;
-                    }
+        if (from.getRow() == 1 && from.getCol() == to.getCol() && (to.getRow() - from.getRow() == 2)) {
+            int c = from.getCol();
+            for (int r = to.getRow(); r > from.getRow(); r--) {
+                if (board[r][c] != null) {
+                    return false;
                 }
             }
         } else if (from.getCol() == to.getCol()) {
