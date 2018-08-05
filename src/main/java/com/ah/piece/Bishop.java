@@ -15,6 +15,10 @@ public class Bishop extends Piece {
 
     @Override
     public boolean validateMove(Square[][] board, Coordinate from, Coordinate to) {
-        return false;
+        if (from.getCol() == to.getCol() || from.getRow() == to.getRow()) {
+            return false;
+        }
+
+        return true;
     }
 }
