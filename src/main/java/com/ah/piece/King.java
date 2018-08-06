@@ -15,6 +15,11 @@ public class King extends Piece {
 
     @Override
     public boolean validateMove(Square[][] board, Coordinate from, Coordinate to) {
+        if ((from.getCol() - to.getCol() == 1 || to.getCol() - from.getCol() == 1) ||
+                (from.getRow() - to.getRow() == 1 || to.getRow() - from.getRow() == 1)) {
+            return true;
+        }
+
         return false;
     }
 }

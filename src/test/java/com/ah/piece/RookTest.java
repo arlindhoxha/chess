@@ -22,9 +22,6 @@ public class RookTest {
         board = new Board();
         wRook = new Rook(Color.WHITE);
         bRook = new Rook(Color.BLACK);
-
-        board.getBoard()[5][3] = new Square(new Rook(Color.WHITE));
-        board.getBoard()[3][6] = new Square(new Rook(Color.WHITE));
     }
 
     @Test

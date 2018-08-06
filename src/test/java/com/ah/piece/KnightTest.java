@@ -22,8 +22,6 @@ public class KnightTest {
         board = new Board();
         wKnight = new Knight(Color.WHITE);
         bKnight = new Knight(Color.BLACK);
-        board.getBoard()[4][2] = new Square(new Knight(Color.WHITE));
-        board.getBoard()[4][5] = new Square(new Knight(Color.BLACK));
     }
 
     @Test
