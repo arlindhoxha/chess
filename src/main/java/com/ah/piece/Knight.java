@@ -15,6 +15,16 @@ public class Knight extends Piece {
 
     @Override
     public boolean validateMove(Square[][] board, Coordinate from, Coordinate to) {
+        if ((from.getRow() - to.getRow() == 1 || to.getRow() - from.getRow() == 1) &&
+                (from.getCol() - to.getCol() == 2 || to.getCol() - from.getCol() == 2)) {
+            return true;
+        }
+
+        if ((from.getRow() - to.getRow() == 2 || to.getRow() - from.getRow() == 2) &&
+                (from.getCol() - to.getCol() == 1 || to.getCol() - from.getCol() == 1)) {
+            return true;
+        }
+
         return false;
     }
 }
