@@ -1,7 +1,4 @@
-import com.ah.piece.BishopTest;
-import com.ah.piece.KnightTest;
-import com.ah.piece.PawnTest;
-import com.ah.piece.RookTest;
+import com.ah.piece.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -14,7 +11,8 @@ import org.junit.runners.Suite;
         PawnTest.class,
         RookTest.class,
         BishopTest.class,
-        KnightTest.class
+        KnightTest.class,
+        KingTest.class
 })
 public class TestSuite {
 }

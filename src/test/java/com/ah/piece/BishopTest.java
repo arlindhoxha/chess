@@ -21,9 +21,6 @@ public class BishopTest {
         board = new Board();
         wBishop = new Bishop(Color.WHITE);
         bBishop = new Bishop(Color.BLACK);
-
-        board.getBoard()[6][3] = null;
-        board.getBoard()[1][3] = null;
     }
 
     @Test
