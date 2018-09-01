@@ -60,6 +60,8 @@ public class Board {
             return false;
         }
 
+
+
         boolean valid = fromSquare.getPiece().validateMove(board, from, to);
         if (valid) {
             Piece toPiece = null;
@@ -193,6 +195,11 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    private boolean checkPath(Coordinate from, Coordinate to) {
+
+        return false;
     }
 
     private void init() {

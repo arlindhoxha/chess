@@ -15,6 +15,23 @@ public class Queen extends Piece {
 
     @Override
     public boolean validateMove(Square[][] board, Coordinate from, Coordinate to) {
+        //Queen can do pretty much any move she wants, as long as it's in a line
+
+        if (from.getCol() == to.getCol()) {
+            return true;
+        }
+
+        if (from.getRow() == to.getRow()) {
+            return true;
+        }
+
+        int rowDiff = Math.abs(from.getRow()-to.getRow());
+        int colDiff = Math.abs(from.getCol()-to.getCol());
+
+        if (rowDiff - colDiff == 0) {
+            return true;
+        }
+
         return false;
     }
 }
